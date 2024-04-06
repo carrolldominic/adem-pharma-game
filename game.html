@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.80.1/phaser.min.js"></script>
+    </head>
+    <body>
+
+        <script>
+            var config = {
+                type: Phaser.AUTO,
+                width: 800,
+                height: 600,
+                scene: {
+                    preload: preload,
+                    create: create,
+                    update: update
+                },
+                physics: {
+                    default: 'arcade',
+                    arcade: {
+                        gravity: { y: 0 },
+                        debug: false
+                    }
+                },
+            };
+
+            var game = new Phaser.Game(config);
+
+            function preload() {
+                this.load.image('red-bg', 'images/red_bg.png');
+                this.load.image('h-flesh', 'images/flesh-h.png');
+                this.load.image('v-flesh', 'images/flesh-v.png');
+            }
+
+
+            var walls;
+            function create() {
+                this.add.image(400,300,'red-bg');
+
+                walls = this.physics.add.staticGroup();
+                walls.create(200, 16, 'h-flesh');
+                walls.create(200, 600-16, 'h-flesh');
+                walls.create(600, 16, 'h-flesh');
+                walls.create(600, 600-16, 'h-flesh');
+
+                walls.create()
+            }
+
+            function update() {
+
+            }
+        </script>
+    </body>
+</html>
